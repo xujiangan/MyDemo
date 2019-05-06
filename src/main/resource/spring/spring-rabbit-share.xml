@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xmlns:task="http://www.springframework.org/schema/tool"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/tool"
+       xsi:schemaLocation="http://www.springframework.org/schema/rabbit
+                        http://www.springframework.org/schema/rabbit/spring-rabbit-1.0.xsd
+                        http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                        http://www.springframework.org/schema/tool
+                        http://www.springframework.org/schema/tool/spring-tool.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+    <!--异步支持-->
+    <task:annotation-driven/>
+
+    <!--&lt;!&ndash;开启注解&ndash;&gt;
+    <context:annotation-config/>
+
+    &lt;!&ndash; 自动扫描(自动注入) service层类 &ndash;&gt;
+    <context:component-scan base-package="AsyncHttpClienDemo.*"/>
+
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/>
+
+    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"></bean>
+
+    <mvc:annotation-driven />-->
+
+
+
+
+    <!--定义rabbitmq-->
+    <rabbit:connection-factory id="connectionFactory"
+                               host="172.16.127.123" port="5672" username="xja" password="123123"
+                               virtual-host="/" channel-cache-size="50"/>
+    <rabbit:admin connection-factory="connectionFactory"/>
+
+    <!-- &lt;!&ndash;定义消息&ndash;&gt;
+     <rabbit:queue name="spittle.alert.queue.first" durable="true" auto-delete="false"/>
+     <rabbit:queue name="spittle.alert.queue.second" durable="true" auto-delete="false"/>
+     <rabbit:queue name="spittle.alert.queue.third" durable="true" auto-delete="false"/>
+     &lt;!&ndash;绑定队列&ndash;&gt;
+     <rabbit:fanout-exchange name="spittle.fanout" id="spittle.fanout" durable="true">
+         <rabbit:bindings>
+             <rabbit:binding queue="spittle.alert.queue.first"></rabbit:binding>
+             <rabbit:binding queue="spittle.alert.queue.second"></rabbit:binding>
+             <rabbit:binding queue="spittle.alert.queue.third"></rabbit:binding>
+         </rabbit:bindings>
+     </rabbit:fanout-exchange>-->
+</beans>

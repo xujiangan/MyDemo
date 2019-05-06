@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xsi:schemaLocation="http://www.springframework.org/schema/rabbit
+                        http://www.springframework.org/schema/rabbit/spring-rabbit-1.0.xsd
+                        http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+    <import resource="spring-rabbit-share.xml"/>
+    <!--创建消息队列模板-->
+    <rabbit:template id="rabbitTemplate" connection-factory="connectionFactory"
+                     exchange="spittle.fanout" message-converter="jsonMessageConverter" />
+    <bean id="jsonMessageConverter" class="org.springframework.amqp.support.converter.JsonMessageConverter"></bean>
+
+
+   <!-- &lt;!&ndash;配置生产者&ndash;&gt;
+    <import resource="spring-rabbit-share.xml"/>
+    &lt;!&ndash;创建消息队列模板&ndash;&gt;
+    <rabbit:template id="rabbitTemplate" connection-factory="connectionFactory"
+                     exchange="spittle.fanout" message-converter="jsonMessageConverter"/>
+
+    &lt;!&ndash;解析消息&ndash;&gt;
+    <bean id="jsonMessageConverter" class="org.springframework.amqp.support.converter.JsonMessageConverter"></bean>-->
+</beans>
